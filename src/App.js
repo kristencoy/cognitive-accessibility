@@ -4,35 +4,11 @@ import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./components/globalStyles";
 import { lightTheme, darkTheme } from "./components/Themes";
 import styled from "styled-components";
+import { initState, reducer } from "./store/reducer";
 
 function App() {
   // const [theme, setTheme] = useState("light");
-  // const [fontSize, setFontSize] = useState(16);
-
-  const reducer = (state, action) => {
-    switch (action.type) {
-      case "TOGGLE_DARK": {
-        return {
-          ...state,
-          theme: state.theme === "light" ? "dark" : "light",
-        };
-      }
-      case "FONT_INCREASE": {
-        return {
-          ...state,
-          fontSize: state.fontSize + 1,
-        };
-      }
-      case "FONT_DECREASE": {
-        return {
-          ...state,
-          fontSize: state.fontSize - 1,
-        };
-      }
-    }
-  };
-
-  const initState = { theme: "light", fontSize: 16 };
+  // const [fontSize, setFontSize] = useState(16)
 
   const [state, dispatch] = useReducer(reducer, initState);
 
