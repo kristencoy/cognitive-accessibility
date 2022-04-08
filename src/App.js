@@ -8,6 +8,27 @@ import { initState, reducer } from "./store/reducer";
 import Navbar from "./components/Navbar";
 import Toolbar from "./components/Toolbar";
 
+const Paragraph = styled.p`
+  font-size: ${(props) => props.fontSize}px;
+  width: 35rem;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Title = styled.h1`
+  font-size: ${(props) => props.fontSize + 4}px;
+`;
+
+const ContentContainer = styled.div`
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  line-height: ${(props) => (props.spaced ? "3rem" : "none")};
+`;
+
+const Main = styled.main`
+  padding-top: 2rem;
+`;
+
 function App() {
   // const [theme, setTheme] = useState("light");
   // const [fontSize, setFontSize] = useState(16)
@@ -17,26 +38,6 @@ function App() {
   // const themeToggle = () => {
   //   theme === "light" ? setTheme("dark") : setTheme("light");
   // };
-  const Paragraph = styled.p`
-    font-size: ${state.fontSize}px;
-    width: 35rem;
-    align-items: center;
-    justify-content: center;
-  `;
-
-  const Title = styled.h1`
-    font-size: ${state.fontSize + 4}px;
-  `;
-
-  const ContentContainer = styled.div`
-    margin-bottom: 1rem;
-    margin-top: 2rem;
-    line-height: ${(props) => (props.spaced ? "3rem" : "none")};
-  `;
-
-  const Main = styled.main`
-    padding-top: 2rem;
-  `;
 
   return (
     <ThemeProvider theme={state.theme === "light" ? lightTheme : darkTheme}>
@@ -65,8 +66,8 @@ function App() {
           </button>
         </div> */}
           <ContentContainer spaced={state.spaced}>
-            <Title>CONTENT TITLE</Title>
-            <Paragraph>
+            <Title fontSize={state.fontSize}>CONTENT TITLE</Title>
+            <Paragraph fontSize={state.fontSize}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, sed
               perferendis iure quae modi eaque a magni porro enim iusto minus
               esse officia eos officiis et saepe est consequuntur fuga. Lorem
@@ -76,9 +77,9 @@ function App() {
               quaerat eos labore dolores deleniti adipisci! Nobis.
             </Paragraph>
           </ContentContainer>
-          <ContentContainer>
+          <ContentContainer fontSize={state.fontSize}>
             <Title>CONTENT TITLE</Title>
-            <Paragraph>
+            <Paragraph fontSize={state.fontSize}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat
               fugit, dolore soluta tempora, veniam voluptatem quae aspernatur
               sequi, quas recusandae perferendis provident suscipit repellendus
