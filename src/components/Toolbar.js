@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import ToggleSwitch from "./ToggleSwitch";
 
 function Toolbar(props) {
   const Sidebar = styled.div`
@@ -26,9 +27,8 @@ function Toolbar(props) {
     padding: 10px 15px;
     cursor: pointer;
     margin: 10px;
+    background-color: white;
   `;
-
-  const ToggleSwitch = styled.input``;
 
   return (
     <Sidebar>
@@ -42,8 +42,27 @@ function Toolbar(props) {
       </div>
 
       <div>
-        <input type="checkbox" onChange={props.toggleThemeHandler} />
+        <span>Light/Dark mode</span>
+        <input
+          type="checkbox"
+          checked={props.themeState === "dark" ? true : false}
+          onChange={props.toggleThemeHandler}
+        />
       </div>
+      <div>
+        <span>Spaced out</span>
+        <input type="checkbox" onChange={props.toggleSpacedHandler} />
+      </div>
+      {/* <ToggleSwitch
+        type="checkbox"
+        onChange={props.toggleSpacedHandler}
+        checked={props.spacedState ? true : false}
+      /> */}
+      <h2>DARK MODE</h2>
+      <ToggleSwitch
+        onChange={props.toggleThemeHandler}
+        checked={props.themeState === "dark" ? true : false}
+      />
     </Sidebar>
   );
 }

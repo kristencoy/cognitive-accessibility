@@ -17,7 +17,6 @@ function App() {
   // const themeToggle = () => {
   //   theme === "light" ? setTheme("dark") : setTheme("light");
   // };
-
   const Paragraph = styled.p`
     font-size: ${state.fontSize}px;
     width: 35rem;
@@ -32,6 +31,11 @@ function App() {
   const ContentContainer = styled.div`
     margin-bottom: 1rem;
     margin-top: 2rem;
+    line-height: ${(props) => (props.spaced ? "3rem" : "none")};
+  `;
+
+  const Main = styled.main`
+    padding-top: 2rem;
   `;
 
   return (
@@ -43,12 +47,16 @@ function App() {
           fontIncreaseHandler={() => dispatch({ type: "FONT_INCREASE" })}
           fontDecreaseHandler={() => dispatch({ type: "FONT_DECREASE" })}
           toggleThemeHandler={() => dispatch({ type: "TOGGLE_DARK" })}
+          toggleSpacedHandler={() => dispatch({ type: "TOGGLE_SPACED" })}
+          themeState={state.theme}
+          spacedState={state.spaced}
         />
-        <h1>Welcome</h1>
-        <button onClick={() => dispatch({ type: "TOGGLE_DARK" })}>
-          {state.theme} Mode
-        </button>
-        {/* <div>
+        <Main>
+          <h1>Welcome</h1>
+          <button onClick={() => dispatch({ type: "TOGGLE_DARK" })}>
+            {state.theme} Mode
+          </button>
+          {/* <div>
           <button onClick={() => dispatch({ type: "FONT_INCREASE" })}>
             Larger
           </button>
@@ -56,27 +64,28 @@ function App() {
             Smaller
           </button>
         </div> */}
-        <ContentContainer>
-          <Title>CONTENT TITLE</Title>
-          <Paragraph>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, sed
-            perferendis iure quae modi eaque a magni porro enim iusto minus esse
-            officia eos officiis et saepe est consequuntur fuga. Lorem ipsum
-            dolor, sit amet consectetur adipisicing elit. Voluptatibus vero
-            consectetur architecto magnam laudantium mollitia necessitatibus
-            quas et, qui facilis repellendus porro error, quaerat eos labore
-            dolores deleniti adipisci! Nobis.
-          </Paragraph>
-        </ContentContainer>
-        <ContentContainer>
-          <Title>CONTENT TITLE</Title>
-          <Paragraph>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat
-            fugit, dolore soluta tempora, veniam voluptatem quae aspernatur
-            sequi, quas recusandae perferendis provident suscipit repellendus
-            labore aut culpa vitae voluptatibus ratione!
-          </Paragraph>
-        </ContentContainer>
+          <ContentContainer spaced={state.spaced}>
+            <Title>CONTENT TITLE</Title>
+            <Paragraph>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, sed
+              perferendis iure quae modi eaque a magni porro enim iusto minus
+              esse officia eos officiis et saepe est consequuntur fuga. Lorem
+              ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus
+              vero consectetur architecto magnam laudantium mollitia
+              necessitatibus quas et, qui facilis repellendus porro error,
+              quaerat eos labore dolores deleniti adipisci! Nobis.
+            </Paragraph>
+          </ContentContainer>
+          <ContentContainer>
+            <Title>CONTENT TITLE</Title>
+            <Paragraph>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat
+              fugit, dolore soluta tempora, veniam voluptatem quae aspernatur
+              sequi, quas recusandae perferendis provident suscipit repellendus
+              labore aut culpa vitae voluptatibus ratione!
+            </Paragraph>
+          </ContentContainer>
+        </Main>
       </div>
     </ThemeProvider>
   );
