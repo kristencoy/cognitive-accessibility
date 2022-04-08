@@ -1,4 +1,4 @@
-export const initState = { theme: "light", fontSize: 16 };
+export const initState = { theme: "light", fontSize: 16 }; //grouped: false, filtered: false
 
 export const reducer = (state, action) => {
   switch (action.type) {
