@@ -8,6 +8,11 @@ import { initState, reducer } from "./store/reducer";
 import Navbar from "./components/Navbar";
 import Toolbar from "./components/Toolbar";
 
+const Container = styled.div`
+  display: flex;
+  height: 100vh;
+`;
+
 const Paragraph = styled.p`
   font-size: ${(props) => props.fontSize}px;
   width: 35rem;
@@ -19,14 +24,25 @@ const Title = styled.h1`
   font-size: ${(props) => props.fontSize + 4}px;
 `;
 
+const PageTitle = styled.h1`
+  font-size: ${(props) => props.fontSize + 6}px;
+  padding-left: 3rem;
+  padding-top: 2rem;
+`;
+
 const ContentContainer = styled.div`
   margin-bottom: 1rem;
   margin-top: 2rem;
-  line-height: ${(props) => (props.spaced ? "3rem" : "none")};
+  padding-left: 3rem;
+  line-height: ${(props) => (props.spaced ? "3" : "none")};
 `;
 
 const Main = styled.main`
   padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  padding-left: 20rem;
 `;
 
 function App() {
@@ -42,7 +58,7 @@ function App() {
   return (
     <ThemeProvider theme={state.theme === "light" ? lightTheme : darkTheme}>
       <GlobalStyles />
-      <div className="App">
+      <Container className="App">
         <Navbar />
         <Toolbar
           fontIncreaseHandler={() => dispatch({ type: "FONT_INCREASE" })}
@@ -53,10 +69,10 @@ function App() {
           spacedState={state.spaced}
         />
         <Main>
-          <h1>Welcome</h1>
-          <button onClick={() => dispatch({ type: "TOGGLE_DARK" })}>
+          <PageTitle>Welcome</PageTitle>
+          {/* <button onClick={() => dispatch({ type: "TOGGLE_DARK" })}>
             {state.theme} Mode
-          </button>
+          </button> */}
           {/* <div>
           <button onClick={() => dispatch({ type: "FONT_INCREASE" })}>
             Larger
@@ -87,7 +103,7 @@ function App() {
             </Paragraph>
           </ContentContainer>
         </Main>
-      </div>
+      </Container>
     </ThemeProvider>
   );
 }

@@ -3,21 +3,26 @@ import ToggleSwitch from "./ToggleSwitch";
 
 const Sidebar = styled.div`
   position: fixed;
-  width: 15rem;
+  width: 20%;
+  min-width: 10rem;
   top: 0;
   left: 0;
   bottom: 0;
   border: solid;
   border-color: black;
   padding-top: 5rem;
+  padding-left: 1rem;
   display: flex;
   flex-direction: column;
-  background-color: #eaecef;
+  background-color: ${(props) =>
+    props.themeState === "light" ? "#eaecef" : "rgb(46, 46, 46)"};
+  color: ${(props) => (props.themeState === "light" ? "black" : "white")};
 `;
 
 const FontBtnContainer = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 `;
@@ -26,11 +31,12 @@ const FontButton = styled.button`
   padding: 10px 15px;
   cursor: pointer;
   margin: 10px;
+  border-radius: 12px;
   background-color: white;
 `;
 function Toolbar(props) {
   return (
-    <Sidebar>
+    <Sidebar themeState={props.themeState}>
       <h2>Toolbar</h2>
       <div>
         <label htmlFor="">increase or decrease font size</label>
@@ -40,27 +46,15 @@ function Toolbar(props) {
         </FontBtnContainer>
       </div>
 
-      <div>
-        <span>Light/Dark mode</span>
-        <input
-          type="checkbox"
-          checked={props.themeState === "dark" ? true : false}
-          onChange={props.toggleThemeHandler}
-        />
-      </div>
-      <div>
-        <span>Spaced out</span>
-        <input type="checkbox" onChange={props.toggleSpacedHandler} />
-      </div>
-      {/* <ToggleSwitch
-        type="checkbox"
-        onChange={props.toggleSpacedHandler}
-        checked={props.spacedState ? true : false}
-      /> */}
-      <h2>DARK MODE</h2>
+      <h3>DARK MODE</h3>
       <ToggleSwitch
         onChange={props.toggleThemeHandler}
         checked={props.themeState === "dark" ? true : false}
+      />
+      <h3>SPACED</h3>
+      <ToggleSwitch
+        onChange={props.toggleSpacedHandler}
+        checked={props.spacedState}
       />
     </Sidebar>
   );
