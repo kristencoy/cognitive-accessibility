@@ -8,6 +8,7 @@ const Nav = styled.nav`
   right: 0;
   height: 3rem;
   background-color: black;
+  color: white;
   display: flex;
   z-index: 1000;
   margin-bottom: 2rem;
@@ -24,19 +25,36 @@ const NavItem = styled.li`
   display: flex;
 `;
 
-function Navbar() {
+function Navbar(props) {
   return (
     <Nav>
-      <NavList>
-        <NavItem>Home</NavItem>
-        <NavItem>About</NavItem>
-        <NavItem>Foo</NavItem>
-        <NavItem>Bar</NavItem>
-        <NavItem>AnotherItem</NavItem>
-        <NavItem>Contact</NavItem>
-      </NavList>
+      {!props.filtered && (
+        <NavList>
+          <NavItem>Home</NavItem>
+          <NavItem>About</NavItem>
+          <NavItem>Foo</NavItem>
+          <NavItem>Bar</NavItem>
+          <NavItem>AnotherItem</NavItem>
+          <NavItem>Contact</NavItem>
+        </NavList>
+      )}
     </Nav>
   );
+
+  //   <Nav>
+  //   {(function() {if(props.filtered) {return (
+  //     <NavList>
+  //       <NavItem>Home</NavItem>
+  //       <NavItem>About</NavItem>
+  //       <NavItem>Foo</NavItem>
+  //       <NavItem>Bar</NavItem>
+  //       <NavItem>AnotherItem</NavItem>
+  //       <NavItem>Contact</NavItem>
+  //     </NavList>
+  //   )} else {
+  //     return <Hamburger />
+  //   }
+  // </Nav>
 }
 
 export default Navbar;

@@ -5,6 +5,7 @@ const Sidebar = styled.div`
   position: fixed;
   width: 20%;
   min-width: 10rem;
+  max-width: 12rem;
   top: 0;
   left: 0;
   bottom: 0;
@@ -31,7 +32,7 @@ const FontButton = styled.button`
   padding: 10px 15px;
   cursor: pointer;
   margin: 10px;
-  border-radius: 12px;
+  border-radius: 5px;
   background-color: white;
 `;
 function Toolbar(props) {
@@ -55,6 +56,11 @@ function Toolbar(props) {
       <ToggleSwitch
         onChange={props.toggleSpacedHandler}
         checked={props.spacedState}
+      />
+      <h3>FILTERED</h3>
+      <ToggleSwitch
+        onChange={props.toggleFilteredHandler}
+        checked={props.filteredState}
       />
     </Sidebar>
   );

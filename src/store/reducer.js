@@ -1,4 +1,9 @@
-export const initState = { theme: "light", fontSize: 16, spaced: false }; //grouped: false, filtered: false
+export const initState = {
+  theme: "light",
+  fontSize: 16,
+  spaced: false,
+  filtered: false,
+};
 
 export const reducer = (state, action) => {
   switch (action.type) {
@@ -24,6 +29,12 @@ export const reducer = (state, action) => {
       return {
         ...state,
         spaced: !state.spaced,
+      };
+    }
+    case "TOGGLE_FILTERED": {
+      return {
+        ...state,
+        filtered: !state.filtered,
       };
     }
   }
